@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KT Financial Consultancy | Kaushik Thakkar</title>
+<style>
+  :root{
+    --ink:#1b2a2f;
+    --paper:#f6f3ec;
+    --teal:#1f5a52;
+    --teal-deep:#143b36;
+    --gold:#b8862f;
+    --line:#d8d2c4;
+    --muted:#5b6b6a;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Georgia', 'Times New Roman', serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+  }
+
+  .mono{
+    font-family:'Courier New', monospace;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;
+    top:0;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    z-index:100;
+  }
+  .nav{
+    max-width:1100px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 24px;
+  }
+  .brand{
+    font-size:22px;
+    font-weight:700;
+    color:var(--teal-deep);
+    letter-spacing:0.02em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand .logo-mark{flex-shrink:0;}
+  .brand-text span{color:var(--gold);}
+  nav ul{
+    display:flex;
+    gap:28px;
+    list-style:none;
+  }
+  nav a{
+    text-decoration:none;
+    color:var(--ink);
+    font-family:'Courier New', monospace;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    border-bottom:1px solid transparent;
+    transition:border-color 0.2s, color 0.2s;
+  }
+  nav a:hover{
+    color:var(--teal);
+    border-bottom:1px solid var(--gold);
+  }
+  .menu-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    max-width:1100px;
+    margin:0 auto;
+    padding:90px 24px 70px;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .ledger-line{
+    font-family:'Courier New', monospace;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .ledger-line::before{
+    content:"";
+    width:34px;
+    height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:48px;
+    line-height:1.15;
+    color:var(--teal-deep);
+    font-weight:700;
+    margin-bottom:18px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--teal);
+  }
+  .hero p{
+    font-size:17px;
+    color:var(--muted);
+    max-width:480px;
+    margin-bottom:30px;
+  }
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:'Courier New', monospace;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:14px 26px;
+    border:1px solid var(--teal-deep);
+    color:var(--teal-deep);
+    transition:all 0.2s;
+    display:inline-block;
+  }
+  .btn-solid{
+    background:var(--teal-deep);
+    color:var(--paper);
+  }
+  .btn-solid:hover{background:var(--teal);border-color:var(--teal);}
+  .btn:not(.btn-solid):hover{background:var(--teal-deep);color:var(--paper);}
+
+  /* ---------- LEDGER CARD (signature element) ---------- */
+  .ledger-card{
+    background:#fffdf8;
+    border:1px solid var(--line);
+    box-shadow:6px 6px 0 var(--teal-deep);
+    padding:32px 28px;
+    position:relative;
+  }
+  .ledger-card::before{
+    content:"PROFILE ENTRY";
+    position:absolute;
+    top:-11px;
+    left:28px;
+    background:var(--paper);
+    padding:0 8px;
+    font-family:'Courier New', monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    color:var(--gold);
+  }
+  .ledger-row{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px dashed var(--line);
+    font-family:'Courier New', monospace;
+    font-size:13px;
+  }
+  .ledger-row:last-child{border-bottom:none;}
+  .ledger-row .label{color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
+  .ledger-row .value{color:var(--teal-deep);font-weight:700;text-align:right;}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{
+    max-width:1100px;
+    margin:0 auto;
+    padding:70px 24px;
+  }
+  .section-head{
+    margin-bottom:46px;
+  }
+  .section-head .ledger-line{margin-bottom:10px;}
+  .section-head h2{
+    font-size:34px;
+    color:var(--teal-deep);
+    font-weight:700;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    background:#fffdf8;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:start;
+  }
+  .about-grid p{
+    color:var(--muted);
+    margin-bottom:16px;
+    font-size:16px;
+  }
+  .stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .stat{
+    border-left:3px solid var(--gold);
+    padding-left:16px;
+  }
+  .stat .num{
+    font-size:36px;
+    font-weight:700;
+    color:var(--teal-deep);
+    font-family:'Courier New', monospace;
+  }
+  .stat .lbl{
+    font-size:13px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service{
+    background:var(--paper);
+    padding:30px 26px;
+    transition:background 0.2s;
+  }
+  .service:hover{background:#fffdf8;}
+  .service .idx{
+    font-family:'Courier New', monospace;
+    font-size:12px;
+    color:var(--gold);
+    letter-spacing:0.12em;
+    margin-bottom:10px;
+  }
+  .service h3{
+    font-size:19px;
+    color:var(--teal-deep);
+    margin-bottom:10px;
+    font-weight:700;
+  }
+  .service p{
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  /* ---------- WHY CHOOSE ---------- */
+  .why{
+    background:var(--teal-deep);
+    color:var(--paper);
+  }
+  .why .section-head h2{color:var(--paper);}
+  .why .ledger-line{color:var(--gold);}
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:30px;
+  }
+  .why-item{
+    border-left:2px solid var(--gold);
+    padding-left:18px;
+  }
+  .why-item h4{
+    font-size:17px;
+    margin-bottom:8px;
+    font-weight:700;
+  }
+  .why-item p{
+    font-size:14px;
+    color:#cfe0dc;
+  }
+
+  /* ---------- PACKAGES ---------- */
+  .packages-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .package{
+    border:1px solid var(--line);
+    background:#fffdf8;
+    padding:30px 26px;
+    display:flex;
+    flex-direction:column;
+  }
+  .package.featured{
+    border:2px solid var(--gold);
+    box-shadow:6px 6px 0 var(--gold);
+  }
+  .package .ptitle{
+    font-family:'Courier New', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .package h3{
+    font-size:22px;
+    color:var(--teal-deep);
+    margin-bottom:6px;
+  }
+  .package .price{
+    font-family:'Courier New', monospace;
+    font-size:24px;
+    font-weight:700;
+    color:var(--teal);
+    margin-bottom:18px;
+  }
+  .package .price span{
+    font-size:13px;
+    color:var(--muted);
+    font-weight:400;
+  }
+  .package ul{
+    list-style:none;
+    flex-grow:1;
+    margin-bottom:20px;
+  }
+  .package li{
+    font-size:14px;
+    color:var(--muted);
+    padding:7px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .package li::before{
+    content:"— ";
+    color:var(--gold);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:#fffdf8;
+    border-top:1px solid var(--line);
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+  }
+  .contact-info p{color:var(--muted);margin-bottom:24px;}
+  .contact-line{
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+    padding:14px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .contact-line .label{
+    font-family:'Courier New', monospace;
+    font-size:12px;
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    width:90px;
+    flex-shrink:0;
+  }
+  .contact-line a, .contact-line span{
+    color:var(--teal-deep);
+    font-weight:700;
+    text-decoration:none;
+  }
+  .contact-line a:hover{color:var(--teal);}
+
+  form{display:flex;flex-direction:column;gap:16px;}
+  label{
+    font-family:'Courier New', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--muted);
+    margin-bottom:6px;
+    display:block;
+  }
+  input, textarea{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    font-family:'Georgia', serif;
+    font-size:15px;
+    color:var(--ink);
+  }
+  input:focus, textarea:focus{
+    outline:2px solid var(--teal);
+    outline-offset:1px;
+  }
+  textarea{resize:vertical;min-height:100px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--teal-deep);
+    color:#cfe0dc;
+    text-align:center;
+    padding:30px 24px;
+    font-family:'Courier New', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+  }
+  footer span{color:var(--gold);}
+
+  /* ---------- BUTTON RESET FOR FORM ---------- */
+  button.btn{
+    font-family:'Courier New', monospace;
+    background:var(--teal-deep);
+    border:1px solid var(--teal-deep);
+  }
+  button.btn:hover{background:var(--teal);border-color:var(--teal);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    nav ul{display:none;}
+    .hero{grid-template-columns:1fr;padding-top:60px;}
+    .hero h1{font-size:36px;}
+    .about-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .packages-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <svg class="logo-mark" width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0.5" y="0.5" width="39" height="39" fill="none" stroke="#1f5a52" stroke-width="1"/>
+        <line x1="9" y1="10" x2="9" y2="30" stroke="#1f5a52" stroke-width="2"/>
+        <line x1="9" y1="20" x2="22" y2="10" stroke="#1f5a52" stroke-width="2"/>
+        <line x1="9" y1="20" x2="22" y2="30" stroke="#1f5a52" stroke-width="2"/>
+        <line x1="24" y1="10" x2="34" y2="10" stroke="#b8862f" stroke-width="2"/>
+        <line x1="29" y1="10" x2="29" y2="30" stroke="#b8862f" stroke-width="2"/>
+      </svg>
+      <span class="brand-text">KT <span>Financial</span> Consultancy</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">Profile</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div>
+    <div class="ledger-line">12+ Years of Experience in Finance, Tax &amp; Compliance</div>
+    <h1>Financial clarity, <em>filed on time,</em> every time.</h1>
+    <p>I'm Kaushik Thakkar — an M.Com graduate with 12+ years of hands-on experience in accounting, taxation, and compliance. I help businesses and individuals stay compliant, organised, and in control of their numbers.</p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-solid">Book a Free Consultation</a>
+      <a href="#services" class="btn">View Services</a>
+    </div>
+  </div>
+
+  <div class="ledger-card">
+    <div class="ledger-row"><span class="label">Name</span><span class="value">Kaushik Thakkar</span></div>
+    <div class="ledger-row"><span class="label">Experience</span><span class="value">12+ Years</span></div>
+    <div class="ledger-row"><span class="label">Location</span><span class="value">Ahmedabad</span></div>
+    <div class="ledger-row"><span class="label">Focus Areas</span><span class="value">GST · ITR · TDS</span></div>
+    <div class="ledger-row"><span class="label">Status</span><span class="value">Accepting Clients</span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-head">
+    <div class="ledger-line">Profile</div>
+    <h2>About Kaushik Thakkar</h2>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p>With over 12 years of professional experience across accounting, finance, taxation, and compliance, I've worked closely with businesses of every size — helping them stay on top of their statutory obligations while keeping their books clean and audit-ready.</p>
+      <p>With deep, practical experience across diverse industries, I bring a hands-on, day-to-day understanding of how businesses actually manage their finances and compliance — not just textbook knowledge.</p>
+      <p>KT Financial Consultancy was founded with one simple goal: to give small businesses, professionals, and individuals access to dependable, expert-level financial support — without the overhead of a large firm.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="num">12+</div>
+        <div class="lbl">Years of Experience</div>
+      </div>
+      <div class="stat">
+        <div class="num">100%</div>
+        <div class="lbl">Deadline Focused</div>
+      </div>
+      <div class="stat">
+        <div class="num">7+</div>
+        <div class="lbl">Service Areas</div>
+      </div>
+      <div class="stat">
+        <div class="num">1:1</div>
+        <div class="lbl">Personal Attention</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head">
+    <div class="ledger-line">What I Do</div>
+    <h2>Services Offered</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service">
+      <div class="idx">01 / GST</div>
+      <h3>GST Compliance</h3>
+      <p>Registration, monthly &amp; quarterly returns (GSTR-1, 3B), annual returns (9/9C), and reconciliation of 2A/2B.</p>
+    </div>
+    <div class="service">
+      <div class="idx">02 / INCOME TAX</div>
+      <h3>Income Tax Filing</h3>
+      <p>ITR filing for individuals, firms, and companies, along with tax planning and advance tax computation.</p>
+    </div>
+    <div class="service">
+      <div class="idx">03 / TDS</div>
+      <h3>TDS &amp; TCS Compliance</h3>
+      <p>Quarterly TDS returns (24Q, 26Q, 27Q), correction statements, and lower deduction certificate support.</p>
+    </div>
+    <div class="service">
+      <div class="idx">04 / BOOKS</div>
+      <h3>Bookkeeping &amp; Accounting</h3>
+      <p>Monthly and quarterly accounting using Tally or Zoho Books, with clean, audit-ready records.</p>
+    </div>
+    <div class="service">
+      <div class="idx">05 / PAYROLL</div>
+      <h3>Payroll &amp; Statutory Compliance</h3>
+      <p>Payroll processing along with PF, ESI, and Professional Tax compliance for your team.</p>
+    </div>
+    <div class="service">
+      <div class="idx">06 / ROC</div>
+      <h3>Company &amp; ROC Compliance</h3>
+      <p>Company/LLP registration support and annual ROC filings to keep your entity in good standing.</p>
+    </div>
+    <div class="service">
+      <div class="idx">07 / ADVISORY</div>
+      <h3>Business Advisory</h3>
+      <p>MIS reporting, budgeting, cash flow management, and financial planning for growing businesses.</p>
+    </div>
+    <div class="service">
+      <div class="idx">08 / NOTICES</div>
+      <h3>Notice &amp; Scrutiny Support</h3>
+      <p>Drafting replies and handling correspondence for GST and Income Tax department notices.</p>
+    </div>
+    <div class="service">
+      <div class="idx">09 / CFO</div>
+      <h3>Virtual CFO Services</h3>
+      <p>Ongoing financial oversight, reporting, and strategic guidance for startups and small businesses.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="why">
+  <div class="section-head">
+    <div class="ledger-line">Why Work With Me</div>
+    <h2>Built on Reliability</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <h4>Deadline-First Approach</h4>
+      <p>Late filings mean penalties. Every return and payment is tracked and completed well before due dates.</p>
+    </div>
+    <div class="why-item">
+      <h4>Direct Access, No Layers</h4>
+      <p>You work directly with me — not a junior staff member passing your file around. Every query gets a personal response.</p>
+    </div>
+    <div class="why-item">
+      <h4>12+ Years of Real Experience</h4>
+      <p>Practical knowledge built across diverse industries and business sizes — not just textbook compliance.</p>
+    </div>
+    <div class="why-item">
+      <h4>Transparent, Honest Pricing</h4>
+      <p>Clear monthly or one-time pricing with no hidden charges — you always know what you're paying for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="section-head">
+    <div class="ledger-line">Pricing</div>
+    <h2>Service Packages</h2>
+  </div>
+  <div class="packages-grid">
+    <div class="package">
+      <div class="ptitle">Basic</div>
+      <h3>Individuals &amp; Freelancers</h3>
+      <div class="price">₹500 <span>– ₹1,500 / month</span></div>
+      <ul>
+        <li>Income tax return filing</li>
+        <li>Basic GST return (if applicable)</li>
+        <li>Annual tax planning guidance</li>
+        <li>Email &amp; WhatsApp support</li>
+      </ul>
+      <a href="#contact" class="btn">Enquire</a>
+    </div>
+    <div class="package featured">
+      <div class="ptitle">Most Popular</div>
+      <h3>Small Business Standard</h3>
+      <div class="price">₹4,000 <span>– ₹8,000 / month</span></div>
+      <ul>
+        <li>Monthly GST return filing</li>
+        <li>Quarterly TDS return filing</li>
+        <li>Basic bookkeeping</li>
+        <li>Compliance deadline reminders</li>
+        <li>Phone &amp; WhatsApp support</li>
+      </ul>
+      <a href="#contact" class="btn btn-solid">Enquire</a>
+    </div>
+    <div class="package">
+      <div class="ptitle">Comprehensive</div>
+      <h3>Full Business Compliance</h3>
+      <div class="price">₹8,000 <span>– ₹15,000 / month</span></div>
+      <ul>
+        <li>GST + TDS + Bookkeeping</li>
+        <li>Payroll &amp; statutory compliance</li>
+        <li>ROC annual filings</li>
+        <li>Quarterly review meeting</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="#contact" class="btn">Enquire</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-head">
+    <div class="ledger-line">Get In Touch</div>
+    <h2>Book a Free Consultation</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>Have a question about GST, income tax, TDS, or your business compliance? Reach out directly — the first consultation is free, and there's no obligation.</p>
+      <div class="contact-line">
+        <span class="label">Phone</span>
+        <a href="tel:+919428101967">+91 94281 01967</a>
+      </div>
+      <div class="contact-line">
+        <span class="label">WhatsApp</span>
+        <a href="https://wa.me/919428101967" target="_blank">+91 94281 01967</a>
+      </div>
+      <div class="contact-line">
+        <span class="label">Email</span>
+        <a href="mailto:kaushikthakkar27@gmail.com">kaushikthakkar27@gmail.com</a>
+      </div>
+      <div class="contact-line">
+        <span class="label">Location</span>
+        <span>Ahmedabad, Gujarat</span>
+      </div>
+    </div>
+    <form id="enquiryForm">
+      <div>
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      </div>
+      <div>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+      </div>
+      <div>
+        <label for="message">How can I help?</label>
+        <textarea id="message" name="message" placeholder="Briefly describe your requirement (GST, ITR, TDS, bookkeeping, etc.)"></textarea>
+      </div>
+      <button type="submit" class="btn btn-solid" style="text-align:center;cursor:pointer;">Send Enquiry on WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <svg class="logo-mark" width="28" height="28" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:middle;margin-right:8px;">
+    <rect x="0.5" y="0.5" width="39" height="39" fill="none" stroke="#cfe0dc" stroke-width="1"/>
+    <line x1="9" y1="10" x2="9" y2="30" stroke="#cfe0dc" stroke-width="2"/>
+    <line x1="9" y1="20" x2="22" y2="10" stroke="#cfe0dc" stroke-width="2"/>
+    <line x1="9" y1="20" x2="22" y2="30" stroke="#cfe0dc" stroke-width="2"/>
+    <line x1="24" y1="10" x2="34" y2="10" stroke="#b8862f" stroke-width="2"/>
+    <line x1="29" y1="10" x2="29" y2="30" stroke="#b8862f" stroke-width="2"/>
+  </svg>
+  KT FINANCIAL CONSULTANCY · AHMEDABAD · <span>EST. 2026</span> · ALL RIGHTS RESERVED
+</footer>
+
+<script>
+  document.getElementById('enquiryForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if(!name || !phone){
+      alert('Please enter your name and phone number.');
+      return;
+    }
+
+    const text = `New Enquiry from Website%0A%0A` +
+                 `Name: ${encodeURIComponent(name)}%0A` +
+                 `Phone: ${encodeURIComponent(phone)}%0A` +
+                 `Message: ${encodeURIComponent(message || 'Not specified')}`;
+
+    const whatsappUrl = `https://wa.me/919428101967?text=${text}`;
+    window.open(whatsappUrl, '_blank');
+  });
+</script>
+
+</body>
+</html>
