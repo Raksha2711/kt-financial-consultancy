@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge Centre | KT Financial Consultancy – Ahmedabad</title>
+<meta name="description" content="Free guides, FAQs, compliance due dates and resource sheets on GST, Income Tax, TDS and ROC compliance — by Kaushik Thakkar, Ahmedabad.">
+<style>
+:root{
+  --teal:#1f5a52;
+  --teal-deep:#143b36;
+  --teal-light:#e8f0ef;
+  --gold:#b8862f;
+  --gold-light:#f7f0e3;
+  --ink:#1b2a2f;
+  --paper:#f9f7f3;
+  --muted:#5b6b6a;
+  --line:#ddd8ce;
+  --white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.7;}
+
+/* NAV */
+header{position:sticky;top:0;background:var(--white);border-bottom:2px solid var(--teal);z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+.nav{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.brand-name{font-size:20px;font-weight:700;color:var(--teal-deep);}
+.brand-name span{color:var(--gold);}
+.brand-tag{font-family:'Courier New',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;}
+nav ul{display:flex;gap:30px;list-style:none;}
+nav a{text-decoration:none;color:var(--ink);font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;padding-bottom:3px;border-bottom:2px solid transparent;transition:all 0.2s;}
+nav a:hover, nav a.active{color:var(--teal);border-color:var(--gold);}
+
+/* HERO */
+.page-hero{background:linear-gradient(135deg,var(--teal-deep) 0%,var(--teal) 100%);color:var(--white);padding:60px 24px;text-align:center;}
+.page-hero .badge{font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.page-hero h1{font-size:38px;font-weight:700;margin-bottom:12px;line-height:1.2;}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.75);max-width:580px;margin:0 auto;}
+
+/* PILL NAV */
+.pill-nav{background:var(--white);border-bottom:1px solid var(--line);padding:16px 24px;position:sticky;top:65px;z-index:90;}
+.pill-nav-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.pill{padding:8px 20px;border:1px solid var(--line);background:var(--paper);font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;color:var(--teal-deep);transition:all 0.2s;}
+.pill:hover,.pill.active{background:var(--teal-deep);color:var(--white);border-color:var(--teal-deep);}
+
+/* CONTENT */
+.content{max-width:1100px;margin:0 auto;padding:60px 24px;}
+.section-label{font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+.section-label::before{content:"";width:24px;height:1px;background:var(--gold);display:inline-block;}
+.section-title{font-size:28px;font-weight:700;color:var(--teal-deep);margin-bottom:8px;}
+.section-sub{color:var(--muted);font-size:14px;margin-bottom:28px;}
+
+/* FAQs */
+.faq-group{margin-bottom:36px;}
+.faq-cat{font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-deep);font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--teal-light);}
+details{border:1px solid var(--line);background:var(--white);margin-bottom:8px;transition:background 0.2s;}
+details[open]{background:#fffdf8;}
+summary{cursor:pointer;padding:16px 20px;font-size:15px;font-weight:700;color:var(--teal-deep);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+summary::-webkit-details-marker{display:none;}
+.faq-icon{color:var(--gold);font-size:22px;font-weight:300;flex-shrink:0;transition:transform 0.2s;}
+details[open] .faq-icon{transform:rotate(45deg);}
+.faq-ans{padding:0 20px 18px;font-size:14px;color:var(--muted);line-height:1.75;border-top:1px dashed var(--line);padding-top:14px;margin-top:0;}
+
+/* Due Dates */
+.due-table{border:1px solid var(--line);overflow:hidden;margin-top:4px;}
+.due-header{background:var(--teal-deep);padding:12px 20px;display:flex;justify-content:space-between;}
+.due-header span{font-family:'Courier New',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.due-row{display:flex;justify-content:space-between;align-items:center;padding:13px 20px;border-bottom:1px dashed var(--line);}
+.due-row:last-child{border-bottom:none;}
+.due-row:nth-child(even){background:#fffdf8;}
+.due-row span:first-child{font-size:14px;color:var(--ink);}
+.due-badge{font-family:'Courier New',monospace;font-size:12px;font-weight:700;padding:4px 12px;flex-shrink:0;}
+.badge-teal{color:var(--teal-deep);background:var(--teal-light);}
+.badge-gold{color:var(--gold);background:var(--gold-light);}
+
+/* Articles grid */
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+.article-card{background:var(--white);padding:26px 22px;transition:background 0.2s;}
+.article-card:hover{background:#fffdf8;}
+.article-cat{font-family:'Courier New',monospace;font-size:11px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;}
+.article-card h4{font-size:16px;color:var(--teal-deep);margin-bottom:8px;font-weight:700;line-height:1.3;}
+.article-card p{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.65;}
+.article-link{font-family:'Courier New',monospace;font-size:12px;color:var(--teal);text-decoration:none;letter-spacing:0.06em;}
+.article-link:hover{color:var(--teal-deep);}
+
+/* Downloads */
+.downloads-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.download-card{border:1px solid var(--line);background:var(--white);padding:22px 20px;display:flex;align-items:flex-start;gap:16px;transition:box-shadow 0.2s;}
+.download-card:hover{box-shadow:4px 4px 0 var(--teal-light);}
+.dl-icon{width:42px;height:42px;background:var(--teal-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dl-icon svg{stroke:var(--teal);fill:none;width:20px;height:20px;}
+.download-card h4{font-size:15px;font-weight:700;color:var(--teal-deep);margin-bottom:6px;}
+.download-card p{font-size:13px;color:var(--muted);margin-bottom:10px;}
+.dl-link{font-family:'Courier New',monospace;font-size:12px;color:var(--teal);text-decoration:none;letter-spacing:0.06em;}
+
+/* CTA bar */
+.cta-bar{background:var(--teal-deep);padding:50px 24px;text-align:center;margin-top:60px;}
+.cta-bar h3{font-size:22px;color:var(--white);margin-bottom:10px;}
+.cta-bar p{color:rgba(255,255,255,0.7);margin-bottom:24px;font-size:15px;}
+.btn-gold{background:var(--gold);color:var(--white);font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:14px 28px;display:inline-block;transition:background 0.2s;}
+.btn-gold:hover{background:#9a6f25;}
+
+/* Divider */
+.section-divider{border:none;border-top:1px solid var(--line);margin:60px 0;}
+
+/* FOOTER */
+footer{background:var(--teal-deep);color:#a8c8c4;padding:28px 24px;text-align:center;font-family:'Courier New',monospace;font-size:12px;letter-spacing:0.08em;}
+footer span{color:var(--gold);}
+footer a{color:#a8c8c4;text-decoration:none;margin:0 10px;}
+footer a:hover{color:var(--gold);}
+
+@media(max-width:860px){
+  nav ul{display:none;}
+  .page-hero h1{font-size:28px;}
+  .articles-grid{grid-template-columns:1fr;}
+  .downloads-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<div class="nav">
+  <a href="index.html" class="brand">
+    <svg width="36" height="36" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0.5" y="0.5" width="39" height="39" fill="none" stroke="#1f5a52" stroke-width="1.5"/>
+      <line x1="9" y1="10" x2="9" y2="30" stroke="#1f5a52" stroke-width="2.2"/>
+      <line x1="9" y1="20" x2="22" y2="10" stroke="#1f5a52" stroke-width="2.2"/>
+      <line x1="9" y1="20" x2="22" y2="30" stroke="#1f5a52" stroke-width="2.2"/>
+      <line x1="24" y1="10" x2="34" y2="10" stroke="#b8862f" stroke-width="2.2"/>
+      <line x1="29" y1="10" x2="29" y2="30" stroke="#b8862f" stroke-width="2.2"/>
+    </svg>
+    <div>
+      <div class="brand-name">KT <span>Financial</span> Consultancy</div>
+      <div class="brand-tag">Ahmedabad · Est. 2026</div>
+    </div>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#packages">Packages</a></li>
+      <li><a href="knowledge.html" class="active">Knowledge</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="badge">Knowledge Centre</div>
+  <h1>Guides, FAQs &amp; Resources</h1>
+  <p>Practical answers to the tax, GST, and compliance questions clients ask most — updated as the law changes. Free, no sign-up needed.</p>
+</section>
+
+<!-- PILL NAV -->
+<div class="pill-nav">
+  <div class="pill-nav-inner">
+    <a href="#faqs" class="pill">FAQs</a>
+    <a href="#duedates" class="pill">Due Dates</a>
+    <a href="#articles" class="pill">Articles</a>
+    <a href="#downloads" class="pill">Downloads</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- ===== FAQs ===== -->
+  <section id="faqs">
+    <div class="section-label">Frequently Asked Questions</div>
+    <div class="section-title">Questions Clients Ask Most</div>
+    <p class="section-sub">Plain answers to common tax, GST, TDS and compliance questions — no jargon.</p>
+
+    <!-- Income Tax -->
+    <div class="faq-group">
+      <div class="faq-cat">Income Tax</div>
+      <details>
+        <summary>Who is required to file an Income Tax Return in India? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">Any individual with gross total income above the basic exemption limit (₹2.5 lakh under old regime / ₹3 lakh under new regime for FY 2025-26), residents with foreign assets, anyone claiming a refund, and businesses/professionals as per Section 139 must file an ITR.</div>
+      </details>
+      <details>
+        <summary>What is the difference between the old and new tax regimes? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">The new regime offers lower slab rates but removes most deductions (80C, 80D, HRA etc.). The old regime keeps higher rates but allows full deductions. The right choice depends on your investments, home loan interest and salary structure — we run a side-by-side computation for every client before recommending.</div>
+      </details>
+      <details>
+        <summary>What happens if I miss the ITR due date? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">A belated return can be filed until 31 December of the assessment year with a late fee under Section 234F (up to ₹5,000) plus interest under Section 234A. Losses (except house property loss) cannot be carried forward if the return is belated.</div>
+      </details>
+      <details>
+        <summary>What income tax slab rates apply for FY 2025-26 (AY 2026-27)? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">Under the New Regime (default): up to ₹3 lakh — nil; ₹3–7 lakh — 5%; ₹7–10 lakh — 10%; ₹10–12 lakh — 15%; ₹12–15 lakh — 20%; above ₹15 lakh — 30%. A rebate under Section 87A makes tax nil up to ₹12 lakh of income under the new regime. Under the Old Regime: up to ₹2.5 lakh — nil; ₹2.5–5 lakh — 5%; ₹5–10 lakh — 20%; above ₹10 lakh — 30%.</div>
+      </details>
+    </div>
+
+    <!-- GST -->
+    <div class="faq-group">
+      <div class="faq-cat">GST</div>
+      <details>
+        <summary>What is the turnover threshold for GST registration? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">₹40 lakh for goods (₹20 lakh in special-category states) and ₹20 lakh for services. Inter-state suppliers, e-commerce operators and casual taxable persons must register irrespective of turnover.</div>
+      </details>
+      <details>
+        <summary>Can I claim Input Tax Credit (ITC) on all purchases? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">Only on purchases used for business, where the supplier has filed GSTR-1 and the invoice appears in your GSTR-2B, and where ITC is not blocked under Section 17(5) — e.g. motor vehicles for personal use, food &amp; beverages, club memberships.</div>
+      </details>
+      <details>
+        <summary>What are GSTR-9 and GSTR-9C? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">GSTR-9 is the annual return summarising the year's outward &amp; inward supplies and tax paid. GSTR-9C is a self-certified reconciliation statement, mandatory for taxpayers with turnover above ₹5 crore. Both are due by 31 December following the financial year.</div>
+      </details>
+      <details>
+        <summary>What is the GST late fee for delayed GSTR-3B filing? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">₹50 per day (₹25 CGST + ₹25 SGST) for taxpayers with tax liability, subject to a maximum of ₹10,000. For NIL returns, the late fee is ₹20 per day (₹10 CGST + ₹10 SGST). Additionally, interest @18% per annum applies on the unpaid tax from the due date.</div>
+      </details>
+    </div>
+
+    <!-- TDS -->
+    <div class="faq-group">
+      <div class="faq-cat">TDS / TCS</div>
+      <details>
+        <summary>When is TDS required to be deducted by a business? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">When making payments above specified thresholds — salary (Sec 192), contractor payments (194C: ₹30,000/single or ₹1 lakh/annual), rent (194I: ₹2.4 lakh/year), professional fees (194J: ₹30,000/year), commission (194H: ₹15,000/year), etc. The deductor must hold a TAN.</div>
+      </details>
+      <details>
+        <summary>What are the consequences of late TDS deposit? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">Interest @ 1% per month from date of deductibility to actual deduction, and @ 1.5% per month from deduction to actual deposit. Plus late-filing fees under Section 234E (₹200/day) for delayed TDS returns, subject to a maximum of the TDS amount.</div>
+      </details>
+      <details>
+        <summary>When must TDS be deposited to the government? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">By the 7th of the following month for all deductions (except March — deadline is 30th April). For salary TDS deducted in March, deposit is also due by 30th April. TDS must be paid using Challan 281 at authorised bank branches or online via NSDL/TIN 2.0.</div>
+      </details>
+    </div>
+
+    <!-- ROC -->
+    <div class="faq-group">
+      <div class="faq-cat">Company &amp; ROC Compliance</div>
+      <details>
+        <summary>What annual ROC filings are mandatory for a Private Limited Company? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">Form AOC-4 (financial statements) within 30 days of AGM and Form MGT-7A (annual return for small companies) within 60 days of AGM. DIR-3 KYC for every director by 30 September each year. Non-filing attracts daily penalties of ₹100–₹200 per day per form.</div>
+      </details>
+      <details>
+        <summary>What is the minimum capital required to start a Private Limited Company? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">There is no minimum paid-up capital requirement since the Companies (Amendment) Act, 2015. You can incorporate with as little as ₹1 lakh authorised capital. Most founders start with ₹1 lakh to ₹10 lakh authorised capital depending on their business needs.</div>
+      </details>
+      <details>
+        <summary>What is the difference between a Private Limited Company and an LLP? <span class="faq-icon">+</span></summary>
+        <div class="faq-ans">A Pvt Ltd Company has stricter compliance (board meetings, statutory audit mandatory), better funding credibility, and separate legal identity. An LLP has fewer compliance requirements (audit only above ₹40 lakh turnover / ₹25 lakh capital), lower setup cost, and partners are taxed individually. For most small consultancies and service firms, LLP is simpler and cheaper.</div>
+      </details>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ===== DUE DATES ===== -->
+  <section id="duedates">
+    <div class="section-label">Compliance Calendar</div>
+    <div class="section-title">Key Tax &amp; GST Due Dates</div>
+    <p class="section-sub">Retainer clients receive reminders 10 days before each deadline. Never miss a filing again.</p>
+
+    <div class="due-table">
+      <div class="due-header">
+        <span>Compliance</span>
+        <span>Due Date</span>
+      </div>
+      <div class="due-row"><span>GSTR-1 (monthly filers)</span><span class="due-badge badge-teal">11th of each month</span></div>
+      <div class="due-row"><span>GSTR-3B &amp; GST tax payment</span><span class="due-badge badge-teal">20th of each month</span></div>
+      <div class="due-row"><span>TDS deposit for previous month</span><span class="due-badge badge-teal">7th of each month</span></div>
+      <div class="due-row"><span>TDS quarterly return (Q1: Apr–Jun)</span><span class="due-badge badge-teal">31 Jul</span></div>
+      <div class="due-row"><span>TDS quarterly return (Q2: Jul–Sep)</span><span class="due-badge badge-teal">31 Oct</span></div>
+      <div class="due-row"><span>TDS quarterly return (Q3: Oct–Dec)</span><span class="due-badge badge-teal">31 Jan</span></div>
+      <div class="due-row"><span>TDS quarterly return (Q4: Jan–Mar)</span><span class="due-badge badge-teal">31 May</span></div>
+      <div class="due-row"><span>1st Advance Tax instalment (15%)</span><span class="due-badge badge-gold">15 Jun</span></div>
+      <div class="due-row"><span>ITR filing — Individuals &amp; non-audit businesses</span><span class="due-badge badge-gold">31 Jul</span></div>
+      <div class="due-row"><span>2nd Advance Tax instalment (45%)</span><span class="due-badge badge-gold">15 Sep</span></div>
+      <div class="due-row"><span>Tax Audit report u/s 44AB</span><span class="due-badge badge-gold">30 Sep</span></div>
+      <div class="due-row"><span>ITR filing — Audit cases &amp; companies</span><span class="due-badge badge-gold">31 Oct</span></div>
+      <div class="due-row"><span>3rd Advance Tax instalment (75%)</span><span class="due-badge badge-gold">15 Dec</span></div>
+      <div class="due-row"><span>GSTR-9 Annual return</span><span class="due-badge badge-gold">31 Dec</span></div>
+      <div class="due-row"><span>Belated / Revised ITR</span><span class="due-badge badge-gold">31 Dec</span></div>
+      <div class="due-row"><span>4th Advance Tax instalment (100%)</span><span class="due-badge badge-gold">15 Mar</span></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ===== ARTICLES ===== -->
+  <section id="articles">
+    <div class="section-label">Articles &amp; Guides</div>
+    <div class="section-title">Plain-English Explainers</div>
+    <p class="section-sub">Practical guides for business owners and individuals — no jargon, just what you need to act on.</p>
+
+    <div class="articles-grid">
+      <div class="article-card">
+        <div class="article-cat">Income Tax</div>
+        <h4>Old vs New Tax Regime — Which Is Better for You?</h4>
+        <p>Revised slabs, the ₹12 lakh rebate under Section 87A, deductions you lose, and how to decide which regime saves you more tax for AY 2026-27.</p>
+        <a href="index.html#contact" class="article-link">Ask Kaushik →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-cat">Income Tax</div>
+        <h4>Benefits of Filing ITR — Beyond Just Compliance</h4>
+        <p>How a filed ITR unlocks bank loans, visa applications, refunds and loss carry-forward — plus legal tax-saving levers to use before you file.</p>
+        <a href="index.html#contact" class="article-link">Ask Kaushik →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-cat">GST</div>
+        <h4>GST Registration — When Is It Mandatory?</h4>
+        <p>Turnover limits for goods and services, special-category states, inter-state supply rules, and compulsory registration triggers explained simply.</p>
+        <a href="index.html#contact" class="article-link">Ask Kaushik →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-cat">GST</div>
+        <h4>Received a GST Notice? Here Is What to Do</h4>
+        <p>How to read a GST show cause notice, understand Section 73/74 demands, penalty relief windows, and how to file a proper reply on the GST portal.</p>
+        <a href="index.html#contact" class="article-link">Ask Kaushik →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-cat">TDS</div>
+        <h4>TDS Rate Chart FY 2025-26 — Quick Reference</h4>
+        <p>Complete TDS rate chart covering Section 192, 194A, 194C, 194J, 194I, 194H, 194T. Thresholds, deposit due dates and quarterly return filing schedule.</p>
+        <a href="index.html#contact" class="article-link">Ask Kaushik →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-cat">Company Law</div>
+        <h4>Pvt Ltd vs LLP vs Proprietorship — Which Fits?</h4>
+        <p>Compare business structures on compliance burden, taxation, liability protection and ease of starting — practical guidance for small businesses in Ahmedabad.</p>
+        <a href="index.html#contact" class="article-link">Ask Kaushik →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-cat">Income Tax</div>
+        <h4>Section 44ADA — Presumptive Taxation for Consultants</h4>
+        <p>Who qualifies, how the 50% presumption works, the ₹75 lakh turnover limit, and whether it makes sense for your consulting practice or freelance income.</p>
+        <a href="index.html#contact" class="article-link">Ask Kaushik →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-cat">Payroll</div>
+        <h4>PF, ESI &amp; Professional Tax — Employer's Guide</h4>
+        <p>Contribution rates, applicability thresholds, due dates for PF (EPFO), ESI and Professional Tax for Gujarat — and the penalties for non-compliance.</p>
+        <a href="index.html#contact" class="article-link">Ask Kaushik →</a>
+      </div>
+      <div class="article-card">
+        <div class="article-cat">GST</div>
+        <h4>GST Input Tax Credit — What You Can and Cannot Claim</h4>
+        <p>Conditions for valid ITC claims, blocked credits under Section 17(5), GSTR-2B matching rules, and how to handle ITC mismatches in your returns.</p>
+        <a href="index.html#contact" class="article-link">Ask Kaushik →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ===== DOWNLOADS ===== -->
+  <section id="downloads">
+    <div class="section-label">Downloads</div>
+    <div class="section-title">Checklists &amp; Reference Sheets</div>
+    <p class="section-sub">Free resources shared with clients. Request any via WhatsApp and Kaushik will send it across promptly.</p>
+
+    <div class="downloads-grid">
+      <div class="download-card">
+        <div class="dl-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M6 22a2 2 0 01-2-2V4a2 2 0 012-2h8l6 6v12a2 2 0 01-2 2z" stroke-linecap="round"/><path d="M14 2v6h6M10 9H8M16 13H8M16 17H8" stroke-linecap="round"/></svg></div>
+        <div>
+          <h4>ITR Filing Checklist FY 2025-26</h4>
+          <p>Documents and information needed before filing your income tax return — for salaried, business, and professional income.</p>
+          <a href="https://wa.me/919428101967?text=Hi%20Kaushik%2C%20please%20share%20the%20ITR%20Filing%20Checklist%20FY%202025-26." target="_blank" class="dl-link">Request via WhatsApp →</a>
+        </div>
+      </div>
+      <div class="download-card">
+        <div class="dl-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" x2="16" y1="6" y2="6" stroke-linecap="round"/><line x1="16" x2="16" y1="14" y2="18" stroke-linecap="round"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01" stroke-linecap="round"/></svg></div>
+        <div>
+          <h4>Income Tax Slab Rates — Old vs New FY 2025-26</h4>
+          <p>Quick-reference comparison chart across income brackets under both regimes, with rebate and surcharge details.</p>
+          <a href="https://wa.me/919428101967?text=Hi%20Kaushik%2C%20please%20share%20the%20Income%20Tax%20Slab%20Rate%20Chart%20FY%202025-26." target="_blank" class="dl-link">Request via WhatsApp →</a>
+        </div>
+      </div>
+      <div class="download-card">
+        <div class="dl-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M8 2v4M16 2v4M3 10h18" stroke-linecap="round"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg></div>
+        <div>
+          <h4>GST &amp; Tax Compliance Calendar FY 2026-27</h4>
+          <p>All GST, TDS, ITR, ROC and Gujarat Professional Tax deadlines in one month-by-month reference sheet.</p>
+          <a href="https://wa.me/919428101967?text=Hi%20Kaushik%2C%20please%20share%20the%20GST%20and%20Tax%20Compliance%20Calendar%20FY%202026-27." target="_blank" class="dl-link">Request via WhatsApp →</a>
+        </div>
+      </div>
+      <div class="download-card">
+        <div class="dl-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100 8 4 4 0 000-8z" stroke-linecap="round"/></svg></div>
+        <div>
+          <h4>TDS Rate Chart FY 2025-26</h4>
+          <p>All key TDS sections (192, 194A, 194C, 194J, 194I, 194H, 194T) with thresholds and applicable rates in one handy sheet.</p>
+          <a href="https://wa.me/919428101967?text=Hi%20Kaushik%2C%20please%20share%20the%20TDS%20Rate%20Chart%20FY%202025-26." target="_blank" class="dl-link">Request via WhatsApp →</a>
+        </div>
+      </div>
+      <div class="download-card">
+        <div class="dl-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg></div>
+        <div>
+          <h4>Company Incorporation — Documents Checklist</h4>
+          <p>DSC, DIN, office address proof, capital structure, MOA/AOA essentials and ROC portal steps for Pvt Ltd and LLP registration.</p>
+          <a href="https://wa.me/919428101967?text=Hi%20Kaushik%2C%20please%20share%20the%20Company%20Incorporation%20Documents%20Checklist." target="_blank" class="dl-link">Request via WhatsApp →</a>
+        </div>
+      </div>
+      <div class="download-card">
+        <div class="dl-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M9 14l2 2 4-4M7 3H4a1 1 0 00-1 1v16a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1h-3M9 3h6v4H9V3z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <h4>GST Registration — Documents Checklist</h4>
+          <p>PAN, Aadhaar, address proof, bank details and other documents needed for a smooth GST registration application in Gujarat.</p>
+          <a href="https://wa.me/919428101967?text=Hi%20Kaushik%2C%20please%20share%20the%20GST%20Registration%20Documents%20Checklist." target="_blank" class="dl-link">Request via WhatsApp →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-bar">
+    <h3>Have a Question Not Covered Here?</h3>
+    <p>Send it to Kaushik directly — response within a few hours on working days.</p>
+    <a href="https://wa.me/919428101967?text=Hi%20Kaushik%2C%20I%20have%20a%20tax%20or%20compliance%20question%3A%20" target="_blank" class="btn-gold">Ask on WhatsApp</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:10px;">
+    <svg width="26" height="26" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:6px;">
+      <rect x="0.5" y="0.5" width="39" height="39" fill="none" stroke="#a8c8c4" stroke-width="1.5"/>
+      <line x1="9" y1="10" x2="9" y2="30" stroke="#a8c8c4" stroke-width="2"/>
+      <line x1="9" y1="20" x2="22" y2="10" stroke="#a8c8c4" stroke-width="2"/>
+      <line x1="9" y1="20" x2="22" y2="30" stroke="#a8c8c4" stroke-width="2"/>
+      <line x1="24" y1="10" x2="34" y2="10" stroke="#b8862f" stroke-width="2"/>
+      <line x1="29" y1="10" x2="29" y2="30" stroke="#b8862f" stroke-width="2"/>
+    </svg>
+    <span style="color:#fff;font-size:13px;">KT Financial Consultancy</span>
+  </div>
+  KT FINANCIAL CONSULTANCY · AHMEDABAD · <span>EST. 2026</span> · ALL RIGHTS RESERVED<br>
+  <div style="margin-top:10px;">
+    <a href="tel:+919428101967">+91 94281 01967</a>
+    <a href="mailto:kaushikthakkar27@gmail.com">kaushikthakkar27@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
